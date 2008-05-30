@@ -1,0 +1,37 @@
+Nonblocking, nondestructible test for waiting data on TTYs, sockets and probably pipes
+# $Header$
+#
+# $Log$
+# Revision 1.1  2008-05-30 16:59:00  tino
+# First try
+#
+
+<ul>
+<li> Returns 0 (true) if there is input data waiting. </li>
+<li> Returns 1 if no input data waiting. </li>
+<li> Returns 255 on errors. </li>
+<li> Return is undefined on unknown input types. </li>
+<li> Does not read or print anything. </li>
+<li> Does not set tty into CBREAK mode!  As the tty usually is in line mode you need to press Enter for keypressed to detect the input </li>
+</ul>
+
+Example 1:
+<pre>while ! keypressed; do ...; done</pre>
+
+Example 2:
+<pre>while ! keypressed </dev/tty; do ...; done</pre>
+
+Limitations and bugs:
+<ul>
+<li> The input data is not touched and stays there to be read </li>
+<li> Commandline is ignored for now </li>
+<li> Only fd0 (stdin) is checked, be sure to use poper IO redirection <li>
+<li> No Hangup detection </li>
+<li> Works only on input types which support certain ioctl() and select(), known to work on TTYs and Sockets and maybe Pipes. </li>
+<li> Behavior on unsupported types (files, non-tty devices, often Pipes) therefor is undefined.  It depends on your OS if select() signals read (gives true) or not (gives false) or error (gives 2). </li>
+</ul>
+
+This Works is placed under the terms of the Copyright Less License,
+see file COPYRIGHT.CLL.  USE AT OWN RISK, ABSOLUTELY NO WARRANTY.
+
+Actually this only is a minimum wrapper around a library call.

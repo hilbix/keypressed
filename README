@@ -1,0 +1,20 @@
+$Header$
+
+See DESCRIPTION
+
+How to make:
+	make
+	
+You probably want to make it static if you have DIET installed:
+	make static
+	strip keypressed
+
+The latter creates an executable below 1 KB and does fewer syscalls.
+
+This Works is placed under the terms of the Copyright Less License,
+see file COPYRIGHT.CLL.  USE AT OWN RISK, ABSOLUTELY NO WARRANTY. 
+
+$Log$
+Revision 1.1  2008-05-30 16:59:00  tino
+First try
+
