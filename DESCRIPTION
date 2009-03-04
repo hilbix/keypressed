@@ -2,9 +2,11 @@ Nonblocking, nondestructible test for waiting data on TTYs, sockets and probably
 # $Header$
 #
 # $Log$
+# Revision 1.2  2009-03-04 00:03:04  tino
+# Timeout added to description
+#
 # Revision 1.1  2008-05-30 16:59:00  tino
 # First try
-#
 
 <ul>
 <li> Returns 0 (true) if there is input data waiting. </li>
@@ -24,7 +26,7 @@ Example 2:
 Limitations and bugs:
 <ul>
 <li> The input data is not touched and stays there to be read </li>
-<li> Commandline is ignored for now </li>
+<li> On commandline there can be a waiting timeout value in milliseconds, default is no waiting (0) </li>
 <li> Only fd0 (stdin) is checked, be sure to use poper IO redirection <li>
 <li> No Hangup detection </li>
 <li> Works only on input types which support certain ioctl() and select(), known to work on TTYs and Sockets and maybe Pipes. </li>
